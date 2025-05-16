@@ -83,7 +83,6 @@ def take_attendance(subject):
             
             if elapsed_time > duration:
                 break
-# ...existing code...
         while True:
             ret, im = cam.read()
             if not ret:
@@ -126,17 +125,7 @@ def take_attendance(subject):
                 st.session_state['stop_attendance'] = True
             if st.session_state['stop_attendance']:
                 break
-# ...existing code...
-            # Only create the stop button once, outside the loop
-            if 'stop_attendance' not in st.session_state:
-                st.session_state['stop_attendance'] = False
-            if st.button("Stop", key="stop_attendance_main"):
-                st.session_state['stop_attendance'] = True
-            if st.session_state['stop_attendance']:
-                break
-        
         cam.release()
-        cv2.destroyAllWindows()
         
         if not attendance.empty:
             attendance = attendance.drop_duplicates(["Enrollment"], keep="first")
@@ -209,7 +198,6 @@ def register_new_student():
                     break
                     
             cam.release()
-            cv2.destroyAllWindows()
             
             if sample_count > 0:
                 # Update student details
